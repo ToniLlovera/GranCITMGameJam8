@@ -7,8 +7,8 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; set; }
 
     public AudioSource shootingSoundGunHeavy;
-
-
+    public AudioSource emptyMagazineSoundGunHeavy;
+    public AudioSource reloadingSoundGunHeavy;
     private void Awake()
     {
         if (Instance != null & Instance != this)
