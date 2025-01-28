@@ -79,11 +79,6 @@ public class GunSystem : MonoBehaviour
         {
             Reload();
         }
-        //// If you want to automatically reload when magazine is empty
-        //if (readyToShoot && !isShooting && !isReloading && bulletsLeft <=0)
-        //{
-        //    Reload();
-        //}
         
         // Shooting burst
         if (readyToShoot && isShooting && bulletsLeft >0)
