@@ -66,7 +66,7 @@ public class GunSystem : MonoBehaviour
         //Empty Magazine Sound Player
         if(bulletsLeft == 0 && isShooting && !isReloading)
         {
-            SoundManager.Instance.emptyMagazineSoundPistol.Play();    
+            SoundManager.Instance.emptyMagazineSound.Play();    
         }
         
         if( currentShootingMode == ShootingMode.Auto)
@@ -142,7 +142,7 @@ public class GunSystem : MonoBehaviour
     private void Reload()
     {
         bulletsLeft = 0;
-        SoundManager.Instance.PlayShootingSound(thisWeaponModel);
+        SoundManager.Instance.PlayReloadSound(thisWeaponModel);
 
         animator.SetTrigger("RELOAD");
 
