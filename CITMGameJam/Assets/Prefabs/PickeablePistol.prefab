@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2888428037592371718}
   - component: {fileID: 7180099890549473576}
   - component: {fileID: 151401028453165257}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun_Bullet_Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3017237566318367042}
   - component: {fileID: 5188760048537703556}
   - component: {fileID: 1104821632862001410}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 3986659218346493495}
   - component: {fileID: 2842474722327216077}
   - component: {fileID: 505476032293373164}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 4981781954487919110}
   - component: {fileID: 4434281406948167009}
   - component: {fileID: 5544122743759573448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun_Loader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 7917279716121633017}
   - component: {fileID: 7436016587965972115}
   - component: {fileID: 8560359548466722223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PickeablePistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 7298606702265362818}
   - component: {fileID: 1668241096763735903}
   - component: {fileID: 9172707824234620088}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8346986744724518329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 5491581389883051043}
   - component: {fileID: 2581553211603536644}
   - component: {fileID: 2165857626303294207}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 5978373122183203564}
   - component: {fileID: 5915921200657838384}
   - component: {fileID: 2153511247500183595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun_Tigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 7985928170673922340}
   - component: {fileID: 6830061559712423174}
   - component: {fileID: 6282424292028364955}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,7 +846,7 @@ GameObject:
   - component: {fileID: 8062143166250406662}
   - component: {fileID: 7797978158886554021}
   - component: {fileID: 1354907845003395645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5630,7 +5630,7 @@ GameObject:
   - component: {fileID: 6974824476451660915}
   - component: {fileID: 7111073406876511292}
   - component: {fileID: 6377529773917033621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
