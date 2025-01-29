@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
 
     bool isGrounded;
-    bool isMoving;
+    bool isMoving=false;
 
     private Vector3 lastPosition = new Vector3(0f, 0f, 0f);
     void Start()

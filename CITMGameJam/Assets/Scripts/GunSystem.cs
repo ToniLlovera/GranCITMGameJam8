@@ -36,7 +36,13 @@ public class GunSystem : MonoBehaviour
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
+    public enum WeaponModel
+    {
+        Pistol,
+        GunHeavy
+    }
 
+    public WeaponModel thisWeaponModel;
     public enum ShootingMode
     {
         Single,
@@ -60,7 +66,7 @@ public class GunSystem : MonoBehaviour
         //Empty Magazine Sound Player
         if(bulletsLeft == 0 && isShooting && !isReloading)
         {
-            SoundManager.Instance.emptyMagazineSoundGunHeavy.Play();    
+            SoundManager.Instance.emptyMagazineSoundPistol.Play();    
         }
         
         if( currentShootingMode == ShootingMode.Auto)
@@ -100,7 +106,8 @@ public class GunSystem : MonoBehaviour
         muzzleEffect.GetComponent<ParticleSystem>().Play();
         animator.SetTrigger("RECOIL");
 
-        SoundManager.Instance.shootingSoundGunHeavy.Play(); 
+        SoundManager.Instance.PlayShootingSound(thisWeaponModel);
+
         readyToShoot = false;
 
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
@@ -135,7 +142,10 @@ public class GunSystem : MonoBehaviour
     private void Reload()
     {
         bulletsLeft = 0;
-        SoundManager.Instance.reloadingSoundGunHeavy.Play();
+        SoundManager.Instance.PlayShootingSound(thisWeaponModel);
+
+        animator.SetTrigger("RELOAD");
+
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
     }
