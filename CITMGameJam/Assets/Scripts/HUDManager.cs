@@ -77,10 +77,10 @@ public class HUDManager : MonoBehaviour
         switch (model)
         {
             case GunSystem.WeaponModel.Pistol:
-                return Instantiate(Resources.Load<GameObject>("Pistol_Weapon")).GetComponent<SpriteRenderer>().sprite;
+                return Instantiate(Resources.Load<GameObject>("Pistol_Ammo")).GetComponent<SpriteRenderer>().sprite;
 
             case GunSystem.WeaponModel.GunHeavy:
-                return Instantiate(Resources.Load<GameObject>("GunHeavy_Weapon")).GetComponent<SpriteRenderer>().sprite;
+                return Instantiate(Resources.Load<GameObject>("Rifle_Ammo")).GetComponent<SpriteRenderer>().sprite;
 
             default:
                 return null;
@@ -92,10 +92,10 @@ public class HUDManager : MonoBehaviour
         switch (model)
         {
             case GunSystem.WeaponModel.Pistol:
-                return Instantiate(Resources.Load<GameObject>("Pistol_Ammo")).GetComponent<SpriteRenderer>().sprite;
+                return Instantiate(Resources.Load<GameObject>("Pistol_Weapon")).GetComponent<SpriteRenderer>().sprite;
 
             case GunSystem.WeaponModel.GunHeavy:
-                return Instantiate(Resources.Load<GameObject>("Rifle_Ammo")).GetComponent<SpriteRenderer>().sprite;
+                return Instantiate(Resources.Load<GameObject>("GunHeavy_Weapon")).GetComponent<SpriteRenderer>().sprite;
 
             default:
                 return null;
