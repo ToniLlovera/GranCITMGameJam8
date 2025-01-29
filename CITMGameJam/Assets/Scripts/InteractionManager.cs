@@ -31,11 +31,16 @@ public class InteractionManager : MonoBehaviour
         {
             GameObject objectHitByRaycast = hit.transform.gameObject;
 
-            if(objectHitByRaycast.GetComponent<GunSystem>())
+            if (objectHitByRaycast.GetComponent<GunSystem>() && objectHitByRaycast.GetComponent<GunSystem>().isActiveWeapon == false)
+            {
+                hoveredWeapon = objectHitByRaycast.gameObject.GetComponent<GunSystem>();
+                hoveredWeapon.GetComponent<Outline>().enabled = true;
+
+                if (Input.GetKeyDown(KeyCode.F))
                 {
-                    hoveredWeapon = objectHitByRaycast.gameObject.GetComponent<GunSystem>();
-                    hoveredWeapon.GetComponent<Outline>().enabled = true;
+                    WeaponManager.Instance.PickupWeapon(objectHitByRaycast.gameObject);
                 }
+            }
             else
                 {
                     if (hoveredWeapon)

@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1139518085781900638
 Transform:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb2e7bb2476e69408dfb54bfd27fe4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  isActiveWeapon: 0
   isShooting: 0
   readyToShoot: 0
   shootingDelay: 0.2
