@@ -7,8 +7,6 @@ using TMPro;
 public class GunSystem : MonoBehaviour
 {
 
-    public Camera playerCamera;
-
     // Shooting
     public bool isShooting, readyToShoot;
     bool allowReset = true;
@@ -35,6 +33,9 @@ public class GunSystem : MonoBehaviour
     public float reloadTime;
     public int magazineSize, bulletsLeft;
     public bool isReloading;
+
+    public Vector3 spawnPosition;
+    public Vector3 spawnRotation;
 
     public enum WeaponModel
     {
@@ -164,7 +165,7 @@ public class GunSystem : MonoBehaviour
 
     private Vector3 CalculateDirectionAndSpread()
     {
-       Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f,0));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f,0));
         RaycastHit hit;
 
         Vector3 targetPoint;
