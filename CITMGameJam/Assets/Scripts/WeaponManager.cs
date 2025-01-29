@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
 
     public GameObject activeWeaponSlot;
 
+    private Quaternion originalWeaponRotation;
     private void Awake()
     {
         if (Instance != null & Instance != this)
@@ -41,7 +42,7 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchActiveSlot(0);
         }
@@ -53,16 +54,16 @@ public class WeaponManager : MonoBehaviour
         {
             SwitchActiveSlot(2);
         }
-
-
-
     }
+
     public void PickupWeapon(GameObject pickedupWeapon)
     {
         AddWeaponIntoActiveSlot(pickedupWeapon);
     }
-    private void AddWeaponIntoActiveSlot( GameObject pickedUpWeapon)
+
+    private void AddWeaponIntoActiveSlot(GameObject pickedUpWeapon)
     {
+        originalWeaponRotation = pickedUpWeapon.transform.localRotation;
 
         DropCurrentWeapon(pickedUpWeapon);
 
@@ -78,9 +79,9 @@ public class WeaponManager : MonoBehaviour
         weapon.animator.enabled = true;
     }
 
-    private void DropCurrentWeapon (GameObject pickedupWeapon)
+    private void DropCurrentWeapon(GameObject pickedupWeapon)
     {
-        if(activeWeaponSlot.transform.childCount >0)
+        if (activeWeaponSlot.transform.childCount > 0)
         {
             var weaponToDrop = activeWeaponSlot.transform.GetChild(0).gameObject;
 
@@ -89,13 +90,14 @@ public class WeaponManager : MonoBehaviour
 
             weaponToDrop.transform.SetParent(pickedupWeapon.transform.parent);
             weaponToDrop.transform.localPosition = pickedupWeapon.transform.localPosition;
-            weaponToDrop.transform.localRotation = pickedupWeapon.transform.localRotation;
+
+            weaponToDrop.transform.localRotation = originalWeaponRotation; 
         }
     }
 
     public void SwitchActiveSlot(int slotNumber)
     {
-        if(activeWeaponSlot.transform.childCount > 0)
+        if (activeWeaponSlot.transform.childCount > 0)
         {
             GunSystem currentWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<GunSystem>();
             currentWeapon.isActiveWeapon = false;
@@ -103,7 +105,7 @@ public class WeaponManager : MonoBehaviour
 
         activeWeaponSlot = weaponSlots[slotNumber];
 
-        if(activeWeaponSlot.transform.childCount >0)
+        if (activeWeaponSlot.transform.childCount > 0)
         {
             GunSystem newWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<GunSystem>();
             newWeapon.isActiveWeapon = true;
