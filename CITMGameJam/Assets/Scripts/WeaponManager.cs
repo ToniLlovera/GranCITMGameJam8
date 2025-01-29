@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GunSystem;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class WeaponManager : MonoBehaviour
     public GameObject activeWeaponSlot;
 
     private Quaternion originalWeaponRotation;
+
+    [Header("Ammo")]
+    public int totalRifleAmmo = 0;
+    public int totalPistolAmmo = 0;
     private void Awake()
     {
         if (Instance != null & Instance != this)
@@ -75,8 +80,20 @@ public class WeaponManager : MonoBehaviour
         pickedUpWeapon.transform.localRotation = Quaternion.Euler(weapon.spawnRotation.x, weapon.spawnRotation.y, weapon.spawnRotation.z);
 
         weapon.isActiveWeapon = true;
-
         weapon.animator.enabled = true;
+    }
+
+    internal void PickupAmmo(AmmoBox ammo)
+    {
+        switch (ammo.ammoType)
+        {
+            case AmmoBox.AmmoType.PistolAmmo:
+                totalPistolAmmo += ammo.ammoAmount;
+                break;
+            case AmmoBox.AmmoType.RiffleAmmo:
+                totalRifleAmmo +=ammo.ammoAmount;
+                break;
+        }
     }
 
     private void DropCurrentWeapon(GameObject pickedupWeapon)
@@ -109,6 +126,34 @@ public class WeaponManager : MonoBehaviour
         {
             GunSystem newWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<GunSystem>();
             newWeapon.isActiveWeapon = true;
+        }
+    }
+
+    internal void DecreaseTotalAmmo(int bulletsToDecrease, GunSystem.WeaponModel thisWeaponModel)
+    {
+        switch (thisWeaponModel)
+        {
+            case GunSystem.WeaponModel.Pistol:
+                totalPistolAmmo -= bulletsToDecrease;
+                break;
+            case GunSystem.WeaponModel.GunHeavy:
+                totalRifleAmmo -= bulletsToDecrease;
+                break;
+                       
+        }
+    }
+    public int CheckAmmoLeftFor(GunSystem.WeaponModel thisWeaponModel)
+    {
+        switch (thisWeaponModel)
+        {
+            case GunSystem.WeaponModel.Pistol:
+                return totalPistolAmmo;
+
+            case GunSystem.WeaponModel.GunHeavy:
+                return totalRifleAmmo;
+
+            default:
+                return 0;
         }
     }
 }

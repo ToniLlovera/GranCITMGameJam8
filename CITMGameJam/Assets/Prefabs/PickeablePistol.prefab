@@ -480,7 +480,7 @@ MonoBehaviour:
   bulletsLeft: 0
   isReloading: 0
   spawnPosition: {x: -0.012, y: -0.127, z: 0.342}
-  spawnRotation: {x: 0, y: 90, z: 0}
+  spawnRotation: {x: 0, y: -90, z: 0}
   thisWeaponModel: 0
   currentShootingMode: 0
 --- !u!1 &4601953277910728532

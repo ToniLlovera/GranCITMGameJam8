@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Ground
   - Bottle
+  - AmmoBox
   layers:
   - Default
   - TransparentFX

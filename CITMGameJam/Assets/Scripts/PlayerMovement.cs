@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 10f;
-    public float sprintMultiplier = 1.5f;
+    public float speed = 5f;
+    public float sprintSpeed = 10f; // Velocidad al correr
+    public float crouchSpeed = 2f; // Velocidad cuando se está agachado
     public float gravity = -9.81f * 2;
     public float jumpHeight = 3f;
 
@@ -17,68 +18,70 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private bool isMoving = false;
-    private Vector3 lastPosition = Vector3.zero;
+    private Vector3 lastPosition = new Vector3(0f, 0f, 0f);
 
-    // Bobbing Variables
-    public float bobbingSpeed = 6f;
-    public float bobbingAmount = 0.05f;
-    public float sprintBobbingAmount = 0.1f; // Increased bobbing when sprinting
-    private float bobbingTimer = 0f;
-    private Vector3 originalCameraPosition;
-    public Transform playerCamera;
+    private bool isCrouching = false;
+    private bool isSprinting = false; // Nuevo estado de correr
+    private float standingHeight = 2f;
+    private float crouchingHeight = 1f;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        originalCameraPosition = playerCamera.localPosition;
     }
 
     void Update()
     {
-        // Grounded check
+        // Comprobación de si está en el suelo
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
         if (isGrounded && velocity.y < 0f)
         {
             velocity.y = -2f;
         }
 
-        // Getting inputs
+        // Obtener los inputs de movimiento
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        bool isSprinting = Input.GetKey(KeyCode.LeftControl);
-        float moveSpeed = isSprinting ? speed * sprintMultiplier : speed;
-
-        // Movement
+        // Crear el vector de movimiento
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * moveSpeed * Time.deltaTime);
 
-        // Jumping
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // **Correr con Left Control**
+        if (Input.GetKey(KeyCode.LeftControl) && !isCrouching)
+        {
+            isSprinting = true;
+        }
+        else
+        {
+            isSprinting = false;
+        }
+
+        // Aplicar velocidad: Correr > Normal > Agachado
+        float currentSpeed = isSprinting ? sprintSpeed : (isCrouching ? crouchSpeed : speed);
+        controller.Move(move * currentSpeed * Time.deltaTime);
+
+        // Saltar (Solo si no está agachado)
+        if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        // Apply gravity
+        // Aplicar gravedad
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // Check movement for bobbing
+        // Comprobar si el jugador está en movimiento
         isMoving = lastPosition != transform.position && isGrounded;
         lastPosition = transform.position;
 
-        // Apply head bobbing with sprinting effect
-        if (isMoving)
+        // **Agacharse con C**
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            bobbingTimer += Time.deltaTime * bobbingSpeed;
-            float bobbingOffset = Mathf.Sin(bobbingTimer) * (isSprinting ? sprintBobbingAmount : bobbingAmount);
-            playerCamera.localPosition = originalCameraPosition + new Vector3(0, bobbingOffset, 0);
+            isCrouching = !isCrouching; // Alternar estado de agachado
         }
-        else
-        {
-            bobbingTimer = 0f;
-            playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, originalCameraPosition, Time.deltaTime * bobbingSpeed);
-        }
+
+        // Aplicar cambio de altura suavemente
+        float targetHeight = isCrouching ? crouchingHeight : standingHeight;
+        controller.height = Mathf.Lerp(controller.height, targetHeight, Time.deltaTime * 10f);
     }
 }
