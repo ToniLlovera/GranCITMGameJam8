@@ -36,8 +36,16 @@ public class RobotPatrolingState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // --- If the agent arrived at waypoint, move to next waypoint --- //
 
+
+        if(SoundManager.Instance.robotChannel.isPlaying ==false)
+        {
+            SoundManager.Instance.robotChannel.clip = SoundManager.Instance.robotWalking;
+            SoundManager.Instance.robotChannel.PlayDelayed(1f);
+        }
+
+
+        // --- If the agent arrived at waypoint, move to next waypoint --- //
         if(agent.remainingDistance <= agent.stoppingDistance)
         {
             agent.SetDestination(waypointsList[Random.Range(0, waypointsList.Count)].position);
@@ -62,6 +70,7 @@ public class RobotPatrolingState : StateMachineBehaviour
     {
         // Stop the Agent
         agent.SetDestination(agent.transform.position);
+        SoundManager.Instance.robotChannel.Stop();
     }
 
 }

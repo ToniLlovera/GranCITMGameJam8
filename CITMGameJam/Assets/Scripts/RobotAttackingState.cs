@@ -20,6 +20,12 @@ public class RobotAttackingState : StateMachineBehaviour
     {
         LookAtPlayer();
 
+        if (SoundManager.Instance.robotChannel.isPlaying == false)
+        {
+            SoundManager.Instance.robotChannel.clip = SoundManager.Instance.robotAttack;
+            SoundManager.Instance.robotChannel.PlayDelayed(0.375f);
+        }
+
         // --- Check if the agent should stop Attacking --- //
         float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
         if (distanceFromPlayer > stopAttackingDistance)

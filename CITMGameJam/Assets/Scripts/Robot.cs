@@ -11,6 +11,8 @@ public class Robot : MonoBehaviour
 
 
     private NavMeshAgent navAgent;
+
+    public bool isDead;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,10 +26,15 @@ public class Robot : MonoBehaviour
         if(HP <0)
         {
             animator.SetTrigger("DIE");
+            isDead = true;
+
+            // Dead Sound
+            SoundManager.Instance.robotChannel.PlayOneShot(SoundManager.Instance.robotDeath);
         }
         else
         {
             animator.SetTrigger("DAMAGE");
+            SoundManager.Instance.robotChannel.PlayOneShot(SoundManager.Instance.robotHurt);
         }
     }
 

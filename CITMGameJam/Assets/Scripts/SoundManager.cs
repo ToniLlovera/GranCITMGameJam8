@@ -17,6 +17,16 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource emptyMagazineSound;
 
+
+    public AudioClip robotWalking;
+    public AudioClip robotChase;
+    public AudioClip robotAttack;
+    public AudioClip robotHurt; //pinyau?
+    public AudioClip robotDeath;
+
+
+    public AudioSource robotChannel;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

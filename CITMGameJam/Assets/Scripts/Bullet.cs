@@ -9,13 +9,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision objectWeHit)
     {
-        if(objectWeHit.gameObject.CompareTag("Target"))
+        if (objectWeHit.gameObject.CompareTag("Target"))
         {
             print("Hit " + objectWeHit.gameObject.name + " !");
 
             CreateBulletImpactEffect(objectWeHit);
 
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
 
         if (objectWeHit.gameObject.CompareTag("Wall"))
@@ -37,12 +37,29 @@ public class Bullet : MonoBehaviour
         }
         if (objectWeHit.gameObject.CompareTag("Robot"))
         {
+            if (objectWeHit.gameObject.GetComponent<Robot>().isDead==false)
+            {
+                objectWeHit.gameObject.GetComponent<Robot>().TakeDamage(bulletDamage);
+            }
             print("Hit Robot !");
-            objectWeHit.gameObject.GetComponent<Robot>().TakeDamage(bulletDamage);
+
+            CreateBloodSprayEffect(objectWeHit);
+
             Destroy(gameObject);
         }
     }
+    private void CreateBloodSprayEffect(Collision objectWeHit)
+    {
+        ContactPoint contact = objectWeHit.contacts[0];
 
+        GameObject bloodSprayPrefab = Instantiate(
+            GlobalReferences.Instance.bloodSprayEffect,
+            contact.point,
+            Quaternion.LookRotation(contact.normal)
+            );
+
+        bloodSprayPrefab.transform.SetParent(objectWeHit.gameObject.transform);
+    }
     void CreateBulletImpactEffect(Collision objectWeHit)
     {
         ContactPoint contact = objectWeHit.contacts[0];

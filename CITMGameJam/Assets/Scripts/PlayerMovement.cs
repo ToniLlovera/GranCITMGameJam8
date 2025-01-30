@@ -6,8 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public float speed = 5f;
-    public float sprintSpeed = 8f; 
-    public float crouchSpeed = 2f; 
+    public float sprintSpeed = 8f;
+    public float crouchSpeed = 2f;
+    public float slideSpeed = 10f; // Velocidad de deslizamiento
     public float gravity = -9.81f * 2;
     public float jumpHeight = 3f;
 
@@ -21,9 +22,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 lastPosition = new Vector3(0f, 0f, 0f);
 
     private bool isCrouching = false;
-    private bool isSprinting = false; 
+    private bool isSprinting = false;
     private float standingHeight = 2f;
     private float crouchingHeight = 1f;
+    private float proneHeight = -0.5f; // Altura al tumbarse
+    private bool isSliding = false; // Estado de deslizamiento
 
     void Start()
     {
@@ -55,8 +58,24 @@ public class PlayerMovement : MonoBehaviour
             isSprinting = false;
         }
 
+        // **Tumbarse con Left Shift**
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
+        {
+            if (isSprinting)
+            {
+                // Deslizar
+                isSliding = true;
+                StartCoroutine(Slide(move));
+            }
+            else
+            {
+                // Tumbarse
+                isCrouching = true; // Cambiar a estado agachado
+            }
+        }
+
         // Aplicar velocidad: Correr > Normal > Agachado
-        float currentSpeed = isSprinting ? sprintSpeed : (isCrouching ? crouchSpeed : speed);
+        float currentSpeed = isSliding ? 0 : (isSprinting ? sprintSpeed : (isCrouching ? crouchSpeed : speed));
         controller.Move(move * currentSpeed * Time.deltaTime);
 
         // Saltar (Solo si no está agachado)
@@ -80,7 +99,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Aplicar cambio de altura suavemente
-        float targetHeight = isCrouching ? crouchingHeight : standingHeight;
+        float targetHeight = isCrouching ? (Input.GetKey(KeyCode.LeftShift) ? proneHeight : crouchingHeight) : standingHeight;
         controller.height = Mathf.Lerp(controller.height, targetHeight, Time.deltaTime * 10f);
+    }
+
+    private IEnumerator Slide(Vector3 move)
+    {
+        float slideDuration = 0.5f; // Duración del deslizamiento
+        float slideTime = 0f;
+
+        while (slideTime < slideDuration)
+        {
+            controller.Move(move * slideSpeed * Time.deltaTime);
+            slideTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isSliding = false; // Termina el deslizamiento
     }
 }

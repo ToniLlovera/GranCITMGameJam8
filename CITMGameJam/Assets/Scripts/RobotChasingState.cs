@@ -24,6 +24,12 @@ public class RobotChasingState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
+        if (SoundManager.Instance.robotChannel.isPlaying == false)
+        {
+            SoundManager.Instance.robotChannel.PlayOneShot(SoundManager.Instance.robotChase);
+        }
+
         agent.SetDestination(player.position);
         animator.transform.LookAt(player);
 
@@ -46,6 +52,7 @@ public class RobotChasingState : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(animator.transform.position);
+        SoundManager.Instance.robotChannel.Stop();
     }
 
 }
