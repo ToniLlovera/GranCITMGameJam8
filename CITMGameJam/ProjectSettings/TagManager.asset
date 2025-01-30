@@ -10,6 +10,8 @@ TagManager:
   - Ground
   - Bottle
   - AmmoBox
+  - obstacle
+  - Obstacle
   layers:
   - Default
   - TransparentFX
