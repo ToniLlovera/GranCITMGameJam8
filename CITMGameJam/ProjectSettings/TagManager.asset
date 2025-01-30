@@ -9,9 +9,9 @@ TagManager:
   - Enemy
   - Ground
   - Bottle
-  - AmmoBox
-  - Obstacle
   - Robot
+  - Waypoints
+  - RobotHit
   layers:
   - Default
   - TransparentFX
