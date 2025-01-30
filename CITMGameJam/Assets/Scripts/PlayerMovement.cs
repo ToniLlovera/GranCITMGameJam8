@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public float speed = 5f;
-    public float sprintSpeed = 10f; // Velocidad al correr
-    public float crouchSpeed = 2f; // Velocidad cuando se está agachado
+    public float sprintSpeed = 8f; 
+    public float crouchSpeed = 2f; 
     public float gravity = -9.81f * 2;
     public float jumpHeight = 3f;
 
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 lastPosition = new Vector3(0f, 0f, 0f);
 
     private bool isCrouching = false;
-    private bool isSprinting = false; // Nuevo estado de correr
+    private bool isSprinting = false; 
     private float standingHeight = 2f;
     private float crouchingHeight = 1f;
 
@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        // Crear el vector de movimiento
         Vector3 move = transform.right * x + transform.forward * z;
 
         // **Correr con Left Control**
