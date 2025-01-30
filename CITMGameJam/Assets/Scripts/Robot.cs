@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -30,15 +31,15 @@ public class Robot : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void OnDrawGizmos()
     {
-        if (navAgent.velocity.magnitude > 0.1)
-        {
-            animator.SetBool("isWalking", true);
-        }
-        else
-        { 
-            animator.SetBool("isWalking", false);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 2.5f); //Attacking // Stop Attacking
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 18f); //Detection (start chasing)
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 21f); //Stop Chasing
     }
 }
