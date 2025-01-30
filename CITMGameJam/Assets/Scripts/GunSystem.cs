@@ -8,7 +8,7 @@ public class GunSystem : MonoBehaviour
 {
 
     public bool isActiveWeapon;
-
+    public int weaponDamage;
     // Shooting
     [Header("Shooting")]
     public bool isShooting, readyToShoot;
@@ -81,6 +81,12 @@ public class GunSystem : MonoBehaviour
     {
         if (isActiveWeapon)
         {
+
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("WeaponRender");
+            }
+
             //ADS Animation
             if(Input.GetMouseButtonDown(1))
             {
@@ -118,6 +124,13 @@ public class GunSystem : MonoBehaviour
             {
                 burstBulletsLeft = bulletsPerBurst;
                 FireWeapon();
+            }
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("WeaponRender");
             }
         }
     }
@@ -160,6 +173,9 @@ public class GunSystem : MonoBehaviour
 
         // Instantiate the bullet
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+
+        Bullet bul = bullet.GetComponent<Bullet>();
+        bul.bulletDamage = weaponDamage;
 
         bullet.transform.forward = shootingDirection;
 

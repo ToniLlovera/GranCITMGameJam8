@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3050000557385776574}
   - component: {fileID: 6416391093939828594}
   - component: {fileID: 7070110340602087189}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4792,7 +4792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7068820012458560809}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4830,7 +4830,7 @@ GameObject:
   - component: {fileID: 4660630812178692530}
   - component: {fileID: 7069582710380276191}
   - component: {fileID: 9074715097458540651}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PickeableHeavyGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7062,6 +7062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActiveWeapon: 0
+  weaponDamage: 25
   isShooting: 0
   readyToShoot: 0
   shootingDelay: 0.1

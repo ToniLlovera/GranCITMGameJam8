@@ -10,8 +10,8 @@ TagManager:
   - Ground
   - Bottle
   - AmmoBox
-  - obstacle
   - Obstacle
+  - Robot
   layers:
   - Default
   - TransparentFX
