@@ -360,6 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7407484255341914933}
   - component: {fileID: 6223801760755846209}
+  - component: {fileID: 1555779730122712745}
   - component: {fileID: 7917279716121633017}
   - component: {fileID: 7436016587965972115}
   - component: {fileID: 8560359548466722223}
@@ -412,6 +413,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1555779730122712745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849648458610353789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568bf1b4c75a0b34a8de97ae7dfbeea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swayAmount: 0.1
+  swaySpeed: 5
 --- !u!65 &7917279716121633017
 BoxCollider:
   m_ObjectHideFlags: 0
