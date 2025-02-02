@@ -24,9 +24,12 @@ public class SoundManager : MonoBehaviour
     public AudioClip robotHurt; //pinyau?
     public AudioClip robotDeath;
 
-
     public AudioSource robotChannel;
+    public AudioSource playerChannel;
+    public AudioClip playerHurt;
+    public AudioClip playerDie;
 
+    public AudioClip gameOverMusic;
     private void Awake()
     {
         if (Instance != null && Instance != this)
