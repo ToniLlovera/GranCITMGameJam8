@@ -2553,20 +2553,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1363279660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363279656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050714859f2ecdb48bb652789d7029f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bobbingAmount: 0.1
-  bobbingSpeed: 10
 --- !u!1 &1381127130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4270,10 +4256,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 613625652}
     m_Modifications:
-    - target: {fileID: 4165022531409190482, guid: 078f963fffded684abf9d478d7091715, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4294339907564955153, guid: 078f963fffded684abf9d478d7091715, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.530617
@@ -4736,9 +4718,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2060984435464691845, guid: 6e2062485aa73234a9fc620f9ea3e841, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1697087835}
-    - targetCorrespondingSourceObject: {fileID: 8618236560812202521, guid: 6e2062485aa73234a9fc620f9ea3e841, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1363279660}
     - targetCorrespondingSourceObject: {fileID: 8618236560812202521, guid: 6e2062485aa73234a9fc620f9ea3e841, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1363279659}
@@ -5227,10 +5206,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 613625652}
     m_Modifications:
-    - target: {fileID: 1555779730122712745, guid: 82d974d90869d7c409751bfd3e4d9839, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3849648458610353789, guid: 82d974d90869d7c409751bfd3e4d9839, type: 3}
       propertyPath: m_Name
       value: PickeablePistol
