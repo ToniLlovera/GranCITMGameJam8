@@ -81,7 +81,6 @@ public class GunSystem : MonoBehaviour
     {
         if (isActiveWeapon)
         {
-
             foreach (Transform child in transform)
             {
                 child.gameObject.layer = LayerMask.NameToLayer("WeaponRender");

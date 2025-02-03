@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
 
 
     public TextMeshProUGUI playerHealthUI;
-    public GameObject bloodyScreen,gameOverUI;
+    public GameObject bloodyScreen,gameOverUI,gameOverUI2,WeaponPanel;
 
     public bool isDead;
 
@@ -55,17 +56,21 @@ public class Player : MonoBehaviour
 
         // Dying Animation 
         GetComponentInChildren<Animator>().enabled = true;
-        playerHealthUI.gameObject.SetActive(false);
 
         GetComponent<ScreenBlackout>().StartFade();
-
+        playerHealthUI.gameObject.SetActive(false);
+        WeaponPanel.gameObject.SetActive(false);
         StartCoroutine(ShowGameOverUI());
     }
     private IEnumerator ShowGameOverUI()
     {
         yield return new WaitForSeconds(1f);
         gameOverUI.gameObject.SetActive(true);
+        gameOverUI2.gameObject.SetActive(true);
+
     }
+
+
     private IEnumerator BloodyScreenEffect()
     {
         if (!bloodyScreen.activeInHierarchy)
@@ -112,7 +117,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isDead && Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene("MainMenu");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
